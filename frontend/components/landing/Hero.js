@@ -1,4 +1,28 @@
+"use client";
+
+import { usePrivy } from "@privy-io/react-auth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Hero() {
+    const { login, authenticated, ready } = usePrivy();
+    const router = useRouter();
+
+    // Auto-redirect when authenticated changes to true
+    useEffect(() => {
+        if (ready && authenticated) {
+            router.push("/dashboard");
+        }
+    }, [ready, authenticated, router]);
+
+    const handleGetStarted = () => {
+        if (authenticated) {
+            router.push("/dashboard");
+        } else {
+            login();
+        }
+    };
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
@@ -18,7 +42,10 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-lg bg-primary px-8 font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105">
+                        <button
+                            onClick={handleGetStarted}
+                            className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-lg bg-primary px-8 font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105"
+                        >
                             <span className="relative">Get Started</span>
                         </button>
 

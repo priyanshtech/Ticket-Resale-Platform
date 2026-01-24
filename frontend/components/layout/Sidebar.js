@@ -3,9 +3,10 @@ import Link from "next/link";
 export default function Sidebar() {
     const navItems = [
         { href: "/dashboard", label: "Dashboard" },
+        { href: "/dashboard/events", label: "My Events" },
         { href: "/dashboard/tickets", label: "My Tickets" },
-        { href: "/buy", label: "Buy Tickets" },
-        { href: "/verify", label: "Verify Tickets" },
+        { href: "/dashboard/buy", label: "Buy Tickets" },
+        { href: "/dashboard/sell", label: "Sell Tickets" },
     ];
 
     return (

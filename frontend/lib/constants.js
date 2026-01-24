@@ -22,8 +22,8 @@ export const ROUTES = {
     LOGIN: "/login",
     DASHBOARD: "/dashboard",
     TICKETS: "/dashboard/tickets",
-    BUY: "/buy",
-    VERIFY: "/verify",
+    BUY: "/dashboard/buy",
+    SELL: "/dashboard/sell",
     RESELL: (id) => `/resell/${id}`,
     TICKET_QR: (id) => `/dashboard/tickets/${id}/qr`,
 };

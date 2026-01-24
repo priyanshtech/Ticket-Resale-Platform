@@ -16,13 +16,20 @@ export const metadata = {
   description: "Secure blockchain-based ticket resale marketplace",
 };
 
+import Providers from "./providers";
+import { TicketProvider } from "@/context/TicketContext";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          <TicketProvider>
+            {children}
+          </TicketProvider>
+        </Providers>
       </body>
     </html>
   );

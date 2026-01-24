@@ -1,22 +1,38 @@
+'use client';
+
+import { usePrivy } from '@privy-io/react-auth';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import Sidebar from '@/components/layout/Sidebar';
+import Navbar from '@/components/layout/Navbar';
+
 export default function DashboardLayout({ children }) {
-    return (
-        <div className="flex min-h-screen">
-            {/* Sidebar will be imported here */}
-            <aside className="w-64 border-r bg-card">
-                <div className="p-4">
-                    <h2 className="text-lg font-semibold">Dashboard</h2>
+    const { ready, authenticated } = usePrivy();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (ready && !authenticated) {
+            router.push('/login');
+        }
+    }, [ready, authenticated, router]);
+
+    if (!ready || !authenticated) {
+        return (
+            <div className="flex min-h-screen items-center justify-center">
+                <div className="text-center">
+                    <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto"></div>
+                    <p className="text-muted-foreground">Loading dashboard...</p>
                 </div>
-            </aside>
+            </div>
+        );
+    }
 
-            <div className="flex-1">
-                {/* Navbar will be imported here */}
-                <header className="border-b bg-card">
-                    <div className="flex h-16 items-center px-6">
-                        <h1 className="text-xl font-semibold">Ticket Resale Platform</h1>
-                    </div>
-                </header>
-
-                <main className="p-6">
+    return (
+        <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <div className="flex flex-1">
+                <Sidebar />
+                <main className="flex-1 p-6 bg-muted/10">
                     {children}
                 </main>
             </div>
