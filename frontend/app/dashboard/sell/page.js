@@ -58,7 +58,7 @@ export default function SellPage() {
                             <div className="space-y-4 text-sm text-muted-foreground text-left px-4">
                                 <div className="flex items-center gap-2">
                                     <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                                    <span>Verifying ownership of Token #{selectedTicket?.id}...</span>
+                                    <span>Converting ticket to NFT...</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse delay-75"></div>
@@ -148,9 +148,8 @@ export default function SellPage() {
                         <button
                             form="listing-form"
                             type="submit"
-                            className="flex-1 rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
                         >
-                            Confirm Listing
+                            Convert Ticket to NFT and Sell
                         </button>
                     </div>
                 </div>
@@ -189,7 +188,7 @@ export default function SellPage() {
                             onClick={() => handleListClick(ticket)}
                             className="w-full rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
                         >
-                            List for Resale
+                            Convert to NFT and Sell
                         </button>
                     </div>
                 ))}
